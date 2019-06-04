@@ -2,6 +2,9 @@
 layout: post
 title: OpenCV Nonfree Modules
 ---
+
+
+
 <img src="../images/opencv_logo.png" width = "250">
 
 In computer vision applications, it's common to encounter a scenario where feature extraction/matching would be useful.
@@ -45,9 +48,9 @@ We are going use SIFT to match the original image with a rotated, blurred, and c
 
 
 <img src="../images/cat1.jpg" width = "250"> <img src="../images/cat2.jpg" width = "250">
-
-<pre>
-<p><code>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+<pre class="prettyprint lang-py">
+<code>
 import cv2 #import our library
 import matplotlib.pyplot as plt #for plotting
 
@@ -68,7 +71,7 @@ matches = sorted(matched_descriptors, key = lambda x:x.distance) #sort by distan
 out =  cv2.drawMatches(cat,keypoints_1,cat_rotated,keypoints_2,matches[:40],None, flags=2)
 plt.imshow(out)
 plt.show()
- </code>
-<img src="../images/matches.png" width = "1000">
+</code>
+</pre> <img src="../images/matches.png" width = "1000">
 
 We appear to have a good match.

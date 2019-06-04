@@ -4,12 +4,9 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+I'm a junior in college studying computer science. I also work in a research lab where I apply machine learning / computer vision techniques to problems in energy, primarily solar cell degradation.
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[pierce@case.edu](mailto:pierce@case.edu)

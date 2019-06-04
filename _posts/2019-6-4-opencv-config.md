@@ -37,10 +37,11 @@ source name_of_your_environment/bin/activate
 </code></p>
 
 The advantage of using virtual environments is so you can isolate packages. We use them here as we want to install a previous version of OpenCV. Why do this? After OpenCV Version 3.4.2.16, the OpenCV devs removed the option to install SIFT/SURF using `pip`, which would force us to go the recompilation route. As such, we need to install a previous version of OpenCV before this capability was removed. We can do this as normal:
-<p><code>
+<pre><code>
 pip install opencv-python==3.4.2.16
 pip install opencv-contrib-python==3.4.2.16
-</code></p>
+</code>
+</pre>
 
 Then, you're all set! Let's do a quick object matching test.
 Let's use this cat that was the first thing that came up when I Googled "cat".

@@ -3,8 +3,4 @@ layout: page
 title:
 permalink: /resume/
 ---
-
-Benjamin G. Pierce
-======
-
-[pierce@case.edu](mailto:pierce@case.edu) | (614) 787-8389
+<embed src="../Ben_Pierce_Resume.pdf" width="800px" height="1080px" />

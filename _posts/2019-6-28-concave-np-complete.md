@@ -10,7 +10,7 @@ In my recent research, I've stumbled across the fascinating topic of hulls. For 
 
 Why use a hull?
 ====
-There's actually a ton of interesting applications of hulls. One particularity novel use is described in [this](ttps://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links) cool blog post, which uses an alpha shape approximation to find contours of places from geotagged data. One common use of a hull is to postprocess the result of a clustering algorithm, such as k-means or DBSCAN. This is the application I was originally concerned with.
+There's actually a ton of interesting applications of hulls. One particularity novel use is described in [this](ttps://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links) cool blog post, which uses an alpha shape approximation to find contours of places from geotagged data. Another common use of a hull is to postprocess the result of a clustering algorithm, such as k-means or DBSCAN. This is the application I was originally concerned with.
 
 
 What kind of hull?

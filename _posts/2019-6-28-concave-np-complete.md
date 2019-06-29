@@ -78,6 +78,6 @@ Back to the matter at hand: there's not really an easily available package for c
 
 So now what?
 ====
-Now we delve into waters of approximations. Fortunately for us, some really smart people has already thought about this in numerous blog posts. I particularity like [this one](https://sgillies.net/2012/10/13/the-fading-shape-of-alpha.html) by Sean Gillies, who wrote Shapely/fiona and [this post](http://blog.thehumangeo.com/2014/05/12/drawing-boundaries-in-python/) by Kevin Dwyer, who expanded on Sean's ideas and gave a really nice explanation.
+Now we delve into the world of approximations. Fortunately for us, some really smart people has already thought about this in numerous blog posts. I particularity like [this one](https://sgillies.net/2012/10/13/the-fading-shape-of-alpha.html) by Sean Gillies, who wrote Shapely/fiona and [this post](http://blog.thehumangeo.com/2014/05/12/drawing-boundaries-in-python/) by Kevin Dwyer, who expanded on Sean's ideas and gave a really nice explanation.
 
 As both of those posts provide excellent explanation, I won't repeat it here. However, I have taken the liberty of creating a small class based on Sean's and Kevin's work for my own personal use to streamline the process the bit (and generate the figure with the concave approximation above!) You can [find it on my GitHub](https://gist.github.com/bp0017/bf7e548a04f133d53ebac41f3e2b8ad7) if you want to play around with it a bit.

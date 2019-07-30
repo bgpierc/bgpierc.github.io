@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pretty Printing of .csv's in the terminal – Ben Pierce – CS Student at CWRU</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="I spend much of my time ssh’ed into a remote machine (my school’s high performance computing cluster) and often come across .csv files that I’d like to view. cat, although fast, does not handle .csv’s in any special way, and if the .csv is not short and simple, can result in unintelligible output. I was recently diving through my organization’s .bashrc and found this handy script.
+
+
+function pcsv() {
+
+
+" />
+    <meta property="og:description" content="I spend much of my time ssh’ed into a remote machine (my school’s high performance computing cluster) and often come across .csv files that I’d like to view. cat, although fast, does not handle .csv’s in any special way, and if the .csv is not short and simple, can result in unintelligible output. I was recently diving through my organization’s .bashrc and found this handy script.
+
+
+function pcsv() {
+
+
+" />
+    
+    <meta name="author" content="Ben Pierce" />
+
+    
+    <meta property="og:title" content="Pretty Printing of .csv's in the terminal" />
+    <meta property="twitter:title" content="Pretty Printing of .csv's in the terminal" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Ben Pierce - CS Student at CWRU" href="/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="https://avatars3.githubusercontent.com/u/14278184?s=460&v=4" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">Ben Pierce</a></h1>
+            <p class="site-description">CS Student at CWRU</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+            <a href="/resume">Resume</a>
+            <a href="/CV">CV</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Pretty Printing of .csv's in the terminal</h1>
+
+  <div class="entry">
+    <p>I spend much of my time ssh’ed into a remote machine (my school’s high performance computing cluster) and often come across .csv files that I’d like to view. <code class="highlighter-rouge">cat</code>, although fast, does not handle .csv’s in any special way, and if the .csv is not short and simple, can result in unintelligible output. I was recently diving through my organization’s .bashrc and found this handy script.
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script></p>
+<pre class="prettyprint">
+function pcsv() {
+
+cat $1 | sed -e 's/,,/, ,/g' | column -s, -t | less -#5 -N -S
+
+}
+</pre>
+
+<p>which results in some pretty nicely formatted output.</p>
+
+<figure>
+<img src="../images/pcsv_demo.gif" />
+<figcaption> from the Iris dataset </figcaption>
+</figure>
+
+<p>Thanks to whichever fed up grad student that wrote this.</p>
+
+  </div>
+
+  <div class="date">
+    Written on June  4, 2019
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+<a href="mailto:pierce@case.edu"><i class="svg-icon email"></i></a>
+
+
+<a href="https://github.com/bp0017"><i class="svg-icon github"></i></a>
+<a href="https://instagram.com/bp0017"><i class="svg-icon instagram"></i></a>
+<a href="https://www.linkedin.com/in/ben-pierce-564802143"><i class="svg-icon linkedin"></i></a>
+
+
+<a href="https://www.twitter.com/bp0017"><i class="svg-icon twitter"></i></a>
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+
+  </body>
+</html>

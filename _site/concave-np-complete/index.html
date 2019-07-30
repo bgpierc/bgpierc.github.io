@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The (NP Complete) Concave Hull – Ben Pierce – CS Student at CWRU</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="
+
+" />
+    <meta property="og:description" content="
+
+" />
+    
+    <meta name="author" content="Ben Pierce" />
+
+    
+    <meta property="og:title" content="The (NP Complete) Concave Hull" />
+    <meta property="twitter:title" content="The (NP Complete) Concave Hull" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Ben Pierce - CS Student at CWRU" href="/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="https://avatars3.githubusercontent.com/u/14278184?s=460&v=4" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">Ben Pierce</a></h1>
+            <p class="site-description">CS Student at CWRU</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+            <a href="/resume">Resume</a>
+            <a href="/CV">CV</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>The (NP Complete) Concave Hull</h1>
+
+  <div class="entry">
+    <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Simple_polygon.svg/300px-Simple_polygon.svg.png" alt="from Wikipedia" /></p>
+
+<p>In my recent research, I’ve stumbled across the fascinating topic of hulls. For simplicity, we can define a hull to be an n-sided polygon that encloses all points p ∈ S, a set of k points. The most common type of hull is a convex hull, which is the smallest convex polygon that contains S, in contrast to the more rarely seen concave hull, which we can define to be the smallest polygon that encloses S. The difference between the two is, of course, that a convex hull is constrained to be an actually convex shape, whereas the concave hull has no such restriction.</p>
+
+<h1 id="why-use-a-hull">Why use a hull?</h1>
+<p>There’s actually a ton of interesting applications of hulls. One particularity novel use is described in <a href="ttps://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links">this</a> cool blog post, which uses an alpha shape approximation to find contours of places from geotagged data. Another common use of a hull is to postprocess the result of a clustering algorithm, such as k-means or DBSCAN. This is the application I was originally concerned with.</p>
+
+<h1 id="what-kind-of-hull">What kind of hull?</h1>
+<p>The easiest type of hull to use is the convex hull. There’s several Python implementations of the convex hull, included in projects like <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjPt-3p4o3jAhWVQs0KHfG3Bj0QFjAAegQIBBAB&amp;url=https%3A%2F%2Fdocs.scipy.org%2Fdoc%2Fscipy%2Freference%2Fgenerated%2Fscipy.spatial.ConvexHull.html&amp;usg=AOvVaw2xCnhbutY0EXwZIA8vYy14">scipy</a>, <a href="https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#ga014b28e56cb8854c0de4a211cb2be656">OpenCV</a>, and <a href="https://shapely.readthedocs.io/en/stable/manual.html">Shapely</a>. The convex hull is quite intuitive, conceptually. Let’s dive into some code.</p>
+
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+<pre class="prettyprint lang-py">
+<code>
+import matplotlib.pyplot as plt
+from sklearn.datasets.samples_generator import make_blobs
+from scipy.spatial import ConvexHull
+
+X, y = make_blobs(n_samples=100, centers=1, n_features=2, random_state=0)
+
+hull = ConvexHull(X)
+
+for simplex in hull.simplices:
+    plt.plot(X[simplex, 0], X[simplex, 1], 'k-', color = 'red')
+
+plt.scatter(*zip(*X), marker = '.', color = 'black')
+plt.show()
+</code>
+</pre>
+<p>Output:</p>
+
+<p><img src="../images/convex.png" width="500" />
+<!---*** for fucking color change in the syntax lol---></p>
+
+<p>Cool, that was easy! We’ve succesfully associated some sort of area with these points, which we can find with various methods. Scipy in particular has already done this for us, so there’s no need to do it explicitly. Mathematically, a common method is through <a href="https://en.wikipedia.org/wiki/Green%27s_theorem">Green’s Theorem</a>, which you might remember from vector calculus.</p>
+
+<h1 id="so-whats-the-problem-here">So what’s the problem here?</h1>
+<p>The problem is that it a convex hull can be a (surprise!) bad approximation for a concave shape. Ideally, a concave hull would look more like the blue line:</p>
+
+<p><img src="../images/concave_and_convex.png" width="500" /></p>
+
+<p>This is clearly much more accurate, although still an approximation. But how do we get here?</p>
+
+<h1 id="whats-the-deal-with-concave-hulls">What’s the deal with concave hulls?</h1>
+<p>Unfortunately for us, it ain’t as easy as the convex hull. None of the previously mentioned libraries have a built-in function for the concave hull, and for good reason. The problem is that finding a perfect concave hull is actually <a href="https://en.wikipedia.org/wiki/NP-completeness">NP-complete</a>. If you’re not familiar with the notion of NP-completeness, it essentially means that the problem is incredibly difficult to solve (Non Polynomial time!) and (the cool part) if we solve one NP-complete problem, we’ve solved them all!</p>
+
+<h1 id="np-complete">NP-Complete?</h1>
+<p>The process of determining if a problem is actually NP-complete is termed a reduction; that is, we mean to transform the problem into something else that we know is NP-complete. Therefore, every problem in the class is merely a rephrasing of the rest. In this case, we can fairly trivially show that finding a concave hull reduces to a problem called the “min-area traveling salesperson”.</p>
+
+<p>The traveling salesperson problem is fairly simple to describe. From <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">Wikipedia</a>:</p>
+
+<blockquote>
+  <p>“Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?”</p>
+</blockquote>
+
+<p>We can visualize this graphically like so:</p>
+
+<p><img src="../images/salesman.png" width="500" /></p>
+
+<p>That looks like something we recognize! We’ve actually enclosed the minimal area, which was what we defined a concave hull to be earlier. Although our visual intuition is enough for the purposes of this blog post, you can find a more formal proof in papers by <a href="https://arxiv.org/pdf/1309.7829.pdf">Fekete et al.</a> and <a href="https://arxiv.org/pdf/1309.7829.pdf">Asaeedi et al.</a>.</p>
+
+<p>As a side note, for those of you who know quite a bit about complexity theory (and before I get emails to correct me), the traveling salesman problem is actually NP-hard, rather then NP-complete because it’s not technically a decision problem. However, the min-area traveling salesman is, as we can reduce it to finding a Hamiltonian cycle in a planar digraph, which is NP-complete as shown by <a href="https://www.cs.princeton.edu/courses/archive/spring04/cos423/handouts/the%20planar%20hamiltonian.pdf">Garey et al</a>.. If I’ve still got this wrong, please let me know!</p>
+
+<p>Back to the matter at hand: there’s not really an easily available package for concave hulls because it’s actually hard to compute one.</p>
+
+<h1 id="so-now-what">So now what?</h1>
+<p>Now we delve into the world of approximations. Fortunately for us, some really smart people has already thought about this in numerous blog posts. I particularity like <a href="https://sgillies.net/2012/10/13/the-fading-shape-of-alpha.html">this one</a> by Sean Gillies, who wrote Shapely/fiona and <a href="http://blog.thehumangeo.com/2014/05/12/drawing-boundaries-in-python/">this post</a> by Kevin Dwyer, who expanded on Sean’s ideas and gave a really nice explanation.</p>
+
+<p>As both of those posts provide excellent explanation, I won’t repeat it here. However, I have taken the liberty of creating a small class based on Sean’s and Kevin’s work for my own personal use to streamline the process the bit (and generate the figure with the concave approximation above!) You can <a href="https://gist.github.com/bp0017/bf7e548a04f133d53ebac41f3e2b8ad7">find it on my GitHub</a> if you want to play around with it a bit.</p>
+
+  </div>
+
+  <div class="date">
+    Written on June 28, 2019
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+<a href="mailto:pierce@case.edu"><i class="svg-icon email"></i></a>
+
+
+<a href="https://github.com/bp0017"><i class="svg-icon github"></i></a>
+<a href="https://instagram.com/bp0017"><i class="svg-icon instagram"></i></a>
+<a href="https://www.linkedin.com/in/ben-pierce-564802143"><i class="svg-icon linkedin"></i></a>
+
+
+<a href="https://www.twitter.com/bp0017"><i class="svg-icon twitter"></i></a>
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,105 @@
+\documentclass[10pt]{article}
+    \usepackage[english]{babel}
+    \usepackage{lipsum}
+    \input{config/minimal-resume-config}
+    \begin{document}
+    
+\begin{center}
+	% Personal
+	% -----------------------------------------------------
+	{\fontsize{\sizeone}{\sizeone}\fontspec[Path = fonts/,LetterSpace=15]{Montserrat-Regular} BENJAMIN PIERCE}
+	\\
+	\vspace{1mm}
+	{\fontsize{1em}{1em}\fontspec[Path = fonts/]{Montserrat-Light} pierce@case.edu -- (614) 787-8389 -- Cleveland, OH -- bp0017.github.io}
+\end{center}
+% Chapter: Education
+% ------------------
+
+\chap{EDUCATION}{
+	
+	\school
+	{Case Western Reserve University}
+	{Aug 2017 – Expected May 2021}
+	{B.S. Computer Science}
+	{Cleveland, OH}
+	{\begin{newitemize}
+		\item GPA: 3.6
+        \item Coursework:  Algorithms, Databases, Data Structures, Intro. Artifical Intelligence
+		%\item Plan to complete B.S./M.S. program in 5th year
+        \end{newitemize}
+	}
+}
+% Chapter: Work Experience
+% ------------------------
+\chap{WORK EXPERIENCE}{
+	
+	\job
+	{Solar Lifetime Durability Extension Center}
+	{Aug 2018 – Present}
+	{Research Assistant}
+	{Cleveland, OH}
+	{\begin{newitemize}
+		\item {Research focus is on computer vision applications for materials}
+		\item {Other duties include solar module fabrication, testing, and analysis}
+		\end{newitemize}}
+	\job
+	{Peth\textquotesingle{}s Landscaping}
+	{June 2015 – Aug 2018}
+	{Landscaper}
+	{Strongsville, OH}
+	{\begin{newitemize}
+		\item {Summer job as a landscaper, responsible for mulch, planting, mowing, trimming, etc.}
+		\end{newitemize}}
+}
+% Chapter: Skills
+% ------------------------
+
+\chap{SKILLS}{
+	\begin{newitemize}
+		\item Programming Languages: Python, R, Java, C
+        \item Libraries: sklearn, skimage, scipy, openCV, pandas
+		\item Technologies: MySQL, Hadoop, Linux, SLURM/HPC
+	  %  \item Training: Basic lab safety, high-voltage
+    \end{newitemize}
+}
+% Chapter: Projects
+% ------------------------
+
+\chap{PROJECTS}{
+	
+	\project
+	{Image Processing on substrate formation on Ni-Al alloys}
+	{}
+	{}
+	{Used computer vision techniques to quantize substrate growth rate on electromagnetically levitated, molten droplet of Ni-Al. Successfully confirmed theoretical behaviour through a purely data-driven approach. Output: two poster presentations, paper in progress\\}
+		\project
+		{Unsupervised Machine Learning on electroluminescence images}
+		{}
+		{}
+		{Used machine learning to idenfity and classify degredation types in EL images of solar cells in order to impartially seperate modes of failure and computationally detect reasons for power loss\\}
+		}
+		% Chapter: Awards
+		% ------------------------
+	
+		\chap{AWARDS}{
+		
+			\award
+			{SURES Scholar}
+			{May 2019}
+			{Awarded grant funding for summer research}
+			{CWRU SOURCE}
+		
+            \award
+			{Choose Ohio First Awardee}
+			{Aug 2017}
+			{Recognized for STEM skills and awarded scholarship}
+			{State of Ohio}
+		
+            \award
+			{Dean\textquotesingle{}s High Honors}
+			{Aug 2017-}
+			{Made Dean\textquotesingle{}s list for academic success}
+			{CWRU}
+		}
+
+\end{document}

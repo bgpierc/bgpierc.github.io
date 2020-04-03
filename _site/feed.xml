@@ -1,4 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-10-09T14:53:00-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Pierce</title><subtitle>CS Student at CWRU</subtitle><entry><title type="html">Recent Poster presentations</title><link href="http://localhost:4000/posters/" rel="alternate" type="text/html" title="Recent Poster presentations" /><published>2019-10-08T00:00:00-04:00</published><updated>2019-10-08T00:00:00-04:00</updated><id>http://localhost:4000/posters</id><content type="html" xml:base="http://localhost:4000/posters/">&lt;p&gt;These posters are what I’ve been working on recently.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-03T01:04:28-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Pierce</title><subtitle>CS Student at CWRU</subtitle><entry><title type="html">Finite State Automata</title><link href="http://localhost:4000/finite-state-automata/" rel="alternate" type="text/html" title="Finite State Automata" /><published>2020-04-01T00:00:00-04:00</published><updated>2020-04-01T00:00:00-04:00</updated><id>http://localhost:4000/finite-state-automata</id><content type="html" xml:base="http://localhost:4000/finite-state-automata/">&lt;p&gt;I’ve come across finite state automata (also known as finite state machines) in multiple different contexts. After all, regular languages are context-free (this joke will not be funny until later).  One of the more interesting aspects of computer science is how different topics pop up across different areas that appear to be totally unconnected.&lt;/p&gt;
+
+&lt;h1 id=&quot;fsa-in-circuit-design&quot;&gt;FSA in Circuit Design&lt;/h1&gt;
+&lt;p&gt;The first time I encountered finite state machines was in a logic and design class. In this context, state machines arose naturally as a model for a simple computation. Here’s a quick example:&lt;/p&gt;
+
+&lt;p&gt;Problem: Design a 3-bit binary counter with counting sequence 0,1,2,3,4,5,0,1,… 
+This seems a simple enough problem. Here’s my sloppily-scrawled solution:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/fsm1.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If the clock ticks 1, increment the counter. Once 5 has been reached, wrap back around. In this context, a FSM has been used to informally describe the structure of some circuit, but it only appears to matter for human context. Indeed, the implementation of the FSM in hardware was more based on a truth table and Karnaugh map simplification then the structure of the FSM.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/circuit.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Thus, in this case, FSM were a useful tool to describe the overall structure of a problem, but leaves implementation details to a formalized method. The second place I encountered FSM is a similar story.&lt;/p&gt;
+
+&lt;h1 id=&quot;tcp-specifications&quot;&gt;TCP Specifications&lt;/h1&gt;
+&lt;p&gt;For my networks class, I had to understand (and write!) an implemention of the Transmission Control Protocol (TCP). TCP is used for pretty much every Web transaction where reliability is important, and is implemented at the operating system level via Unix sockets. The specification for TCP is laid out in the &lt;a href=&quot;https://tools.ietf.org/html/rfc793&quot;&gt;RFC&lt;/a&gt;. Although the RFC never mentions FSM directly, it does lay out a sequence of states and state transitions for TCP, beginning on page 20. TCP can therefore be implemented as a state machine. TCP is based on the principle of reliable data transfer, which attempts to adjust for network errors such as flipped bits or dropped packets (this is what differentiates TCP from a fire-and-forget protocol like UDP). When designing a rdt protocol like TCP, it becomes useful to draw a FSM for both the send and receive side, as show below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/rdt.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Unlike my experience with circuity, the high level of detail provided by the FSM is already quite useful; clearly, we can just place the conditions on this diagram into a series of if-statements and let the machine loop. This use case hints at how a informal model can be used to describe the structure of a program.&lt;/p&gt;
+
+&lt;h1 id=&quot;automata-theory&quot;&gt;Automata Theory&lt;/h1&gt;
+&lt;p&gt;The next place I encountered finite state machines was in a class on theoretical computer science. Naturally, the first thing that must be done is construct a theoretical computer. A finite state automata is one of the simplest models we can use (in contrast to pushdown automata and Turing machines). To give a formal definition:&lt;/p&gt;
+
+&lt;p&gt;A finite state automata M is a 5-tuple (Q, ∑, δ q, F) where&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Q is a finite set of states&lt;/li&gt;
+  &lt;li&gt;∑ is a finite set called the alphabet&lt;/li&gt;
+  &lt;li&gt;δ is a transition function&lt;/li&gt;
+  &lt;li&gt;q is the initial state&lt;/li&gt;
+  &lt;li&gt;F is the set of accept states.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Informally, a finite state automata is a set of states and a transition function, that work on some “alphabet”. Let’s make this more real.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;../images/fsa_machine.png&quot; width=&quot;400&quot; /&gt;
+ &lt;figcaption&gt;
+    Source: &lt;a href=&quot;https://arxiv.org/abs/1212.6933&quot;&gt;arXiv&lt;/a&gt;
+ &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Imagine we have returned to the Stone Age of computing, and all we have on hand is a infinite tape for input, a “head” processing unit that can read from the tape, and a machine that threads the tape past the head. Additionally, the machine has a patient “operator” that knows what to do for every character that the head reads in from the tape. This theoretical machine is (surprisingly?) a very useful model for computation!&lt;/p&gt;
+
+&lt;h1 id=&quot;regular-languages&quot;&gt;Regular Languages&lt;/h1&gt;
+&lt;p&gt;As it turns out, the type of problems that a FSA can solve are known as regular problems. Generally, problems are called languages, where the elements of the language are solutions to the problem. This is a useful construct throughout computability and complexity theory. Now let’s use this theory for something, that something being everyone’s favorite problem-solving method of “dude, just use a regex”. Regex, short for Regular Expression, is a much-feared method of string matching, on account of it’s somewhat difficult syntax. However, a landmark result in language theory is that regular expressions are actually equivalent to finite state automata! That is, a regex exists if and only if you can construct a FSA that can compute it. The proof is quite interesting, but it’s much simpler to use nondeterminism (magic!), which will hopefully be discussed in a future post. Let’s give a concrete example.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&quot;../images/hwfsa.png&quot; width=&quot;600&quot; /&gt;
+ &lt;figcaption&gt;
+    from my homework
+ &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Although regex syntax can be frightening, this simplified version has only two symbols, * and implied concatenation. The * symbol simply means “any number of,” and the concatenation is just “these must be next to each other on the tape”.&lt;/p&gt;
+
+&lt;p&gt;So how does our idea of a FSA help us in figuring out a regex? A common technique in FSA-programming is to imagine yourself as as the all-knowing “operator” that makes decisions based on what he or she reads from the tape, one at a time. This is very helpful when considering more complex regex that may be less trivial to write out in a few lines of English.&lt;/p&gt;
+
+&lt;h1 id=&quot;bonus-section-context-free-languages&quot;&gt;Bonus Section: Context Free Languages&lt;/h1&gt;
+&lt;p&gt;In order to justify my joke at the beginning (“After all, regular languages are context-free”), I’ve got to explain it. Essentially, imagine your FSA and add another tape; this time, we’ve made some technological progress, and can now write to this tape. This tape is a stack, meaning that it’s a first-in-first-out queue. Other then that, it’s the same thing as the FSA. We call the languages decided by these machines context-free, and the machines themselves pushdown automata (after the stack). Clearly, our new machine is more “powerful” then our FSA, and can do anything the FSA can do (and more!) Thus, all regular languages are also context free! I’ll save the implications of this for a later post, but now you can at least pretend to laugh.&lt;/p&gt;
+
+&lt;h1 id=&quot;wrapup&quot;&gt;Wrapup&lt;/h1&gt;
+&lt;p&gt;In summary, FSA are pretty neat, and pop up in all sorts of cool places. Honestly, each of the topics covered today deserve a post all on their own. The purpose of this post was to document my “hey, I’ve seen that before” feeling, and hopefully connect a few neurons in my own head, as I’ve found relating seemingly-disparate topics is quite good for digging deeper into it. Next up is probably nondeterminism, which is probably my favorite computer science “hand wave” and also my favorite justification for forgetting to show my work.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’ve come across finite state automata (also known as finite state machines) in multiple different contexts. After all, regular languages are context-free (this joke will not be funny until later). One of the more interesting aspects of computer science is how different topics pop up across different areas that appear to be totally unconnected.</summary></entry><entry><title type="html">Recent Poster presentations</title><link href="http://localhost:4000/posters/" rel="alternate" type="text/html" title="Recent Poster presentations" /><published>2019-10-08T00:00:00-04:00</published><updated>2019-10-08T00:00:00-04:00</updated><id>http://localhost:4000/posters</id><content type="html" xml:base="http://localhost:4000/posters/">&lt;p&gt;These posters are what I’ve been working on recently.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;../images/1907Pierce_Intersections.png&quot; width=&quot;3500&quot; /&gt;&lt;/p&gt;
 
@@ -166,73 +229,7 @@ plt.show()
 &lt;h1 id=&quot;so-now-what&quot;&gt;So now what?&lt;/h1&gt;
 &lt;p&gt;Now we delve into the world of approximations. Fortunately for us, some really smart people has already thought about this in numerous blog posts. I particularity like &lt;a href=&quot;https://sgillies.net/2012/10/13/the-fading-shape-of-alpha.html&quot;&gt;this one&lt;/a&gt; by Sean Gillies, who wrote Shapely/fiona and &lt;a href=&quot;http://blog.thehumangeo.com/2014/05/12/drawing-boundaries-in-python/&quot;&gt;this post&lt;/a&gt; by Kevin Dwyer, who expanded on Sean’s ideas and gave a really nice explanation.&lt;/p&gt;
 
-&lt;p&gt;As both of those posts provide excellent explanation, I won’t repeat it here. However, I have taken the liberty of creating a small class based on Sean’s and Kevin’s work for my own personal use to streamline the process the bit (and generate the figure with the concave approximation above!) You can &lt;a href=&quot;https://gist.github.com/bp0017/bf7e548a04f133d53ebac41f3e2b8ad7&quot;&gt;find it on my GitHub&lt;/a&gt; if you want to play around with it a bit.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">OpenCV Nonfree Modules</title><link href="http://localhost:4000/opencv-config/" rel="alternate" type="text/html" title="OpenCV Nonfree Modules" /><published>2019-06-04T00:00:00-04:00</published><updated>2019-06-04T00:00:00-04:00</updated><id>http://localhost:4000/opencv-config</id><content type="html" xml:base="http://localhost:4000/opencv-config/">&lt;p&gt;&lt;img src=&quot;../images/opencv_logo.png&quot; width=&quot;250&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In computer vision applications, it’s common to encounter a scenario where feature extraction/matching would be useful.
-There are two quite well-known algorithms for this purpose, SIFT and SURF. Although these are not the only options,
-they are robust and tested on a variety of data sets.&lt;/p&gt;
-
-&lt;h1 id=&quot;what-are-siftsurf&quot;&gt;What are SIFT/SURF?&lt;/h1&gt;
-&lt;p&gt;SIFT (Scale Invariant Feature Transform) was patented in 1999 by David Lowe. In general, the algorithm uses filtering techniques
-to extract keypoints of an image, and a set of descriptors to go along with the keypoints. SURF (Speeded Up Robust Features) is a modified version designed for greater speed. A common application of SIFT/SURF is in object recognition.&lt;/p&gt;
-
-&lt;h1 id=&quot;where-can-i-find-implementations&quot;&gt;Where can I find implementations?&lt;/h1&gt;
-&lt;p&gt;Unfortunately for us, the most popular Python computer vision library, OpenCV, doesnt support SIFT and SURF from the default install, which most users get through &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt;. This is because SIFT and SURF are patented, and you’re supposed to pay the authors for use. Thus, OpenCV has segregated them in order to make this clear. However, from as user’s standpoint, this creates some difficulty.&lt;/p&gt;
-
-&lt;h1 id=&quot;how-can-i-configure-opencv&quot;&gt;How can I configure OpenCV?&lt;/h1&gt;
-&lt;p&gt;There’s two seperate methods to this end. The first, and more difficult, is to recompile OpenCV from source in order to enable a certain flag (&lt;code class=&quot;highlighter-rouge&quot;&gt;OPENCV_ENABLE_NONFREE&lt;/code&gt;) when building with &lt;code class=&quot;highlighter-rouge&quot;&gt;cmake&lt;/code&gt;. This method is well documented &lt;a href=&quot;https://www.pyimagesearch.com/2018/05/28/ubuntu-18-04-how-to-install-opencv/&quot;&gt;here&lt;/a&gt;. This alters the default OpenCV install, which is fine if you’re the only user, but generally frowned upon in a multiuser environment. The preferred method is again using &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt;, but with some modifications.&lt;/p&gt;
-
-&lt;p&gt;As a general rule, it’s best practice to use &lt;a href=&quot;https://docs.python.org/3/tutorial/venv.html&quot;&gt;virtual enviroments&lt;/a&gt;. You can create a virtual enviroment with&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;
-virtualenv name_of_your_environment
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;If virtualenv is not installed, you can do that with &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install virtualenv&lt;/code&gt;.
-To activate it, all you have to do is&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;
-source name_of_your_environment/bin/activate
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The advantage of using virtual environments is so you can isolate packages. We use them here as we want to install a previous version of OpenCV. Why do this? After OpenCV Version 3.4.2.16, the OpenCV devs removed the option to install SIFT/SURF using &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt;, which would force us to go the recompilation route. As such, we need to install a previous version of OpenCV before this capability was removed. We can do this as normal:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-pip install opencv-python==3.4.2.16
-pip install opencv-contrib-python==3.4.2.16
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;Then, you’re all set! Let’s do a quick object matching test.
-Let’s use this cat that was the first thing that came up when I Googled “cat”.
-We are going use SIFT to match the original image with a rotated, blurred, and cropped version.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../images/cat1.jpg&quot; width=&quot;250&quot; /&gt; &lt;img src=&quot;../images/cat2.jpg&quot; width=&quot;250&quot; /&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
-&lt;pre class=&quot;prettyprint lang-py&quot;&gt;
-&lt;code&gt;
-import cv2 #import our library
-import matplotlib.pyplot as plt #for plotting
-
-cat = cv2.imread('cat1.jpg') #read images
-cat_rotated = cv2.imread('cat2.jpg')
-
-sift = cv2.xfeatures2d.SIFT_create() #create our SIFT detector
-
-keypoints_1, descriptors_1 = sift.detectAndCompute(cat,None) #find our keypoints and descriptors
-keypoints_2, descriptors_2 = sift.detectAndCompute(cat_rotated,None)
-
-
-bf_matcher = cv2.BFMatcher(cv2.NORM_L1, crossCheck=False) #create our keypoint matcher
-
-matched_descriptors = bf_matcher.match(descriptors_1,descriptors_2) #match descriptors
-
-matches = sorted(matched_descriptors, key = lambda x:x.distance) #sort by distance to get more relevant matches
-out =  cv2.drawMatches(cat,keypoints_1,cat_rotated,keypoints_2,matches[:40],None, flags=2)
-plt.imshow(out)
-plt.show()
-&lt;/code&gt;
-&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&quot;../images/matches.png&quot; width=&quot;1000&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We appear to have a good match.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Pretty Printing of .csv’s in the terminal</title><link href="http://localhost:4000/prettyprint-csv/" rel="alternate" type="text/html" title="Pretty Printing of .csv's in the terminal" /><published>2019-06-04T00:00:00-04:00</published><updated>2019-06-04T00:00:00-04:00</updated><id>http://localhost:4000/prettyprint-csv</id><content type="html" xml:base="http://localhost:4000/prettyprint-csv/">&lt;p&gt;I spend much of my time ssh’ed into a remote machine (my school’s high performance computing cluster) and often come across .csv files that I’d like to view. &lt;code class=&quot;highlighter-rouge&quot;&gt;cat&lt;/code&gt;, although fast, does not handle .csv’s in any special way, and if the .csv is not short and simple, can result in unintelligible output. I was recently diving through my organization’s .bashrc and found this handy script.
+&lt;p&gt;As both of those posts provide excellent explanation, I won’t repeat it here. However, I have taken the liberty of creating a small class based on Sean’s and Kevin’s work for my own personal use to streamline the process the bit (and generate the figure with the concave approximation above!) You can &lt;a href=&quot;https://gist.github.com/bp0017/bf7e548a04f133d53ebac41f3e2b8ad7&quot;&gt;find it on my GitHub&lt;/a&gt; if you want to play around with it a bit.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Pretty Printing of .csv’s in the terminal</title><link href="http://localhost:4000/prettyprint-csv/" rel="alternate" type="text/html" title="Pretty Printing of .csv's in the terminal" /><published>2019-06-04T00:00:00-04:00</published><updated>2019-06-04T00:00:00-04:00</updated><id>http://localhost:4000/prettyprint-csv</id><content type="html" xml:base="http://localhost:4000/prettyprint-csv/">&lt;p&gt;I spend much of my time ssh’ed into a remote machine (my school’s high performance computing cluster) and often come across .csv files that I’d like to view. &lt;code class=&quot;highlighter-rouge&quot;&gt;cat&lt;/code&gt;, although fast, does not handle .csv’s in any special way, and if the .csv is not short and simple, can result in unintelligible output. I was recently diving through my organization’s .bashrc and found this handy script.
 &lt;script src=&quot;https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
 &lt;pre class=&quot;prettyprint&quot;&gt;
 function pcsv() {

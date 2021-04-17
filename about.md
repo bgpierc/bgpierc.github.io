@@ -10,3 +10,5 @@ I'm a junior in college studying computer science. I also work in a research lab
 ### Contact me
 
 [pierce@case.edu](mailto:pierce@case.edu)
+
+[CWRU website](https://engineering.case.edu/centers/sdle/ben-pierce)

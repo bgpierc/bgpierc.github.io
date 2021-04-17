@@ -83,7 +83,7 @@ ensembling methods. The third algorithm implemented in this work, DECORATE is fr
 <h1 id="novel-extension-jackal--active-learning-with-the-jackknife">Novel Extension: JackAL- active learning with the jackknife</h1>
 <p>As mentioned at the beginning, the jackknife is an early resampling method that involves taking leave-one-out samples of the training data. We can then build ensembles from these subsets. There are a few things to note about this process. Obviously, using the jackknife will result in a very large ensemble (size of n-1), which requires training many models. Thus, this procedure is very computationally expensive, and gets more so as the size of the dataset increases. In return, the jackknife’s many classifiers will reduce the impact of the statistical noise in the data quite a bit, as the effect of each and every point is considered. Additionally, the large number of subsets offered by the jackknife causes it to be suitable for when the size of the sample is small, such as in the early stages of the active learning problem. However, as the size of the sample increases, the jackknife becomes less and less feasible and useful, as the removed example has less and less of an effect. A modification of the jackknife, jackknife-k, is discussed in Wu 1986 [8], which simply deletes k elements of the set, rather than 1. Note that this method is analogous to bagging with many bags, which we know to be functional. However, in QBag, the number of bags is held to be constant. Jackknife-k provides us with an opportunity to vary k as a function of the size of the training subset. This allows us to reap the benefits of leaving one sample out when the sample size is very small, but increasing the size to have more of an effect on the ensemble when the number of samples is larger. Thus, we propose a new algorithm: jackAL (jackknife Active Learning), that implements jackknife-k where k obeys some schedule.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algorithm 2: jackAL
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algorithm 2: jackAL
 Input: X, the training data
     k, the number of elements to delete or
     schedule, a function of |X| that returns a value for k
@@ -122,7 +122,7 @@ The second dataset tested is the breast cancer dataset included in sklearn, whic
 
 <h1 id="references">References</h1>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[5]    N. Abe and H. Mamitsuka, “Query Learning Strategies Using Boosting and Bagging.,” Madison, Wisconsin, USA, Jan. 1998, vol. 15, pp. 1–9. Accessed: Dec. 01, 2020. [Online]. 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[5]    N. Abe and H. Mamitsuka, “Query Learning Strategies Using Boosting and Bagging.,” Madison, Wisconsin, USA, Jan. 1998, vol. 15, pp. 1–9. Accessed: Dec. 01, 2020. [Online]. 
 
 [6]    R. L. Milidiú, D. Schwabe, and E. Motta, “Active Learning with Bagging for NLP Tasks,” in Advances in Computer Science, Engineering &amp; Applications, Berlin, Heidelberg, 2012, pp. 141–147, doi: 10.1007/978-3-642-30111-7_14.
 
@@ -147,7 +147,6 @@ The second dataset tested is the breast cancer dataset included in sklearn, whic
       <div class="entry">
         <p>I’ve come across finite state automata (also known as finite state machines) in multiple different contexts. After all, regular languages are context-free (this joke will not be funny until later).  One of the more interesting aspects of computer science is how different topics pop up across different areas that appear to be totally unconnected.</p>
 
-
       </div>
 
       <a href="/finite-state-automata/" class="read-more">Read More</a>
@@ -160,7 +159,6 @@ The second dataset tested is the breast cancer dataset included in sklearn, whic
       <div class="entry">
         <p>These posters are what I’ve been working on recently.</p>
 
-
       </div>
 
       <a href="/posters/" class="read-more">Read More</a>
@@ -172,7 +170,6 @@ The second dataset tested is the breast cancer dataset included in sklearn, whic
 
       <div class="entry">
         <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Simple_polygon.svg/300px-Simple_polygon.svg.png" alt="from Wikipedia" /></p>
-
 
       </div>
 
@@ -187,7 +184,6 @@ The second dataset tested is the breast cancer dataset included in sklearn, whic
         <p>A little over a year ago, I studied abroad in Cape Town, South Africa. I thought some of the photos I took
 were pretty groovy, so I’m embedding them here as well.</p>
 
-
       </div>
 
       <a href="/cape-town/" class="read-more">Read More</a>
@@ -198,11 +194,10 @@ were pretty groovy, so I’m embedding them here as well.</p>
       <h1><a href="/prettyprint-csv/">Pretty Printing of .csv's in the terminal</a></h1>
 
       <div class="entry">
-        <p>I spend much of my time ssh’ed into a remote machine (my school’s high performance computing cluster) and often come across .csv files that I’d like to view. <code class="highlighter-rouge">cat</code>, although fast, does not handle .csv’s in any special way, and if the .csv is not short and simple, can result in unintelligible output. I was recently diving through my organization’s .bashrc and found this handy script.
+        <p>I spend much of my time ssh’ed into a remote machine (my school’s high performance computing cluster) and often come across .csv files that I’d like to view. <code class="language-plaintext highlighter-rouge">cat</code>, although fast, does not handle .csv’s in any special way, and if the .csv is not short and simple, can result in unintelligible output. I was recently diving through my organization’s .bashrc and found this handy script.
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script></p>
 <pre class="prettyprint">
 function pcsv() {
-
 </pre>
 
       </div>
@@ -238,7 +233,7 @@ function pcsv() {
 <a href="https://www.linkedin.com/in/ben-pierce-564802143"><i class="svg-icon linkedin"></i></a>
 
 
-<a href="https://www.twitter.com/bp0017"><i class="svg-icon twitter"></i></a>
+<a href="https://www.twitter.com/bgpierce12"><i class="svg-icon twitter"></i></a>
 
 
 

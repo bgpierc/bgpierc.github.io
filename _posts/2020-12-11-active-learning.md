@@ -1,12 +1,13 @@
 ---
 layout: post
 title: Active Learning via Ensembles
+excerpt_separator: <!--end_excerpt-->
 ---
 
 This post is a paraphrased version of a report I submitted for a machine learning course. I found the topic to be quite interesting, so I'm reposting it here.
 
 The field of active learning has many different approaches. This section focuses on the Query-by-Committee (QbC) framework, which uses ensembling methods to find the best sample to query the oracle for a label. There are generally two parts to this approach. The first part is to construct and train a model ensemble. Two methods are implemented in this work: bagging and boosting. Bagging has the advantage of simplicity, but boosting often gives a larger performance increase. The second part is finding the most optimal example to query the oracle. This is done by finding the maximum “disagreement” of the classifiers, which is done via a variety of methods, including entropy and KL divergence. Overall, the QbC method allows comparable or greater accuracy to a classifier trained on the whole dataset, but with a vastly reduced number of required samples. This work proposes a new QbC framework called jackAL based on the jackknife; this method offers an advantage over the others because it allows the model to maximize small quantities of data, which is often the case when active learning is required. A variation on the jackknife, jackknife-k is explored as well. 
-
+<!--end_excerpt-->
 Bagging and Boosting
 ===
 The first two algorithms implemented in this work come from Abe and Mamitsuka, 1998 [5], and also show up in Milidiú et al, 2012 [6] for natural language processing tasks and Körner et al [7] for the multiclass case. First, we give an overview of the paper; then, we detail our implementation of the QBag and QBoost algorithms. The paper begins by discussing the general concept of QbC. The theory behind QbC is that an ensemble of an ideal randomized learning algorithm will choose a query point to maximize the information. However, this assumes that the base learner is the Gibbs learner, which is intractable. Therefore, this paper presents two committee construction methods, Query-by-Bagging (QBag) and Query-by-Boosting (QBoost) instead. 

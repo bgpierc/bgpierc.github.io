@@ -2,7 +2,7 @@
 layout: post
 title: Gaussian Mixture Models & Expectation Maximization
 ---
-Recently, I've had some spare time to go back through some material from the end of college that I didn't think I'd quite mastered (thanks covid!). One of these topics is the Gaussian Mixture model and how we can use expectation maximization for make it. 
+Recently, I've had some spare time to go back through some material from the end of college that I didn't think I'd quite mastered (thanks covid!). One of these topics is the Gaussian Mixture model and how we can use expectation maximization to implement it. 
 
 Gaussian Mixture Models and E&M
 ===

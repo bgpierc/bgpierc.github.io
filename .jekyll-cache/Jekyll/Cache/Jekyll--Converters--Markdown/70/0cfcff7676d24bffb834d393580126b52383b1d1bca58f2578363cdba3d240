@@ -1,63 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>The (NP Complete) Concave Hull – Ben Pierce – Staff Scientist at Sandia National Labs</title>
-
-        <meta charset="utf-8" />
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-
-    
-    <meta name="description" content="
-" />
-    <meta property="og:description" content="
-" />
-    
-    <meta name="author" content="Ben Pierce" />
-
-    
-    <meta property="og:title" content="The (NP Complete) Concave Hull" />
-    <meta property="twitter:title" content="The (NP Complete) Concave Hull" />
-    
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="Ben Pierce - Staff Scientist at Sandia National Labs" href="/feed.xml" />
-
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-  </head>
-
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="/" class="site-avatar"><img src="https://avatars3.githubusercontent.com/u/14278184?s=460&v=4" /></a>
-
-          <div class="site-info">
-            <h1 class="site-name"><a href="/">Ben Pierce</a></h1>
-            <p class="site-description">Staff Scientist at Sandia National Labs</p>
-          </div>
-
-          <nav>
-            <a href="/">Blog</a>
-            <a href="/about">About</a>
-            <a href="/resume">Resume</a>
-          <!--  <a href="/cv">CV</a> -->
-          </nav>
-        </header>
-      </div>
-    </div>
-
-    <div id="main" role="main" class="container">
-      <article class="post">
-  <h1>The (NP Complete) Concave Hull</h1>
-
-  <div class="entry">
-    <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Simple_polygon.svg/300px-Simple_polygon.svg.png" alt="from Wikipedia" /></p>
+I"<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Simple_polygon.svg/300px-Simple_polygon.svg.png" alt="from Wikipedia" /></p>
 
 <p>In my recent research, I’ve stumbled across the fascinating topic of hulls. For simplicity, we can define a hull to be an n-sided polygon that encloses all points p ∈ S, a set of k points. The most common type of hull is a convex hull, which is the smallest convex polygon that contains S, in contrast to the more rarely seen concave hull, which we can define to be the smallest polygon that encloses S. The difference between the two is, of course, that a convex hull is constrained to be an actually convex shape, whereas the concave hull has no such restriction.</p>
 
@@ -126,39 +67,4 @@ plt.show()
 <p>Now we delve into the world of approximations. Fortunately for us, some really smart people has already thought about this in numerous blog posts. I particularity like <a href="https://sgillies.net/2012/10/13/the-fading-shape-of-alpha.html">this one</a> by Sean Gillies, who wrote Shapely/fiona and <a href="http://blog.thehumangeo.com/2014/05/12/drawing-boundaries-in-python/">this post</a> by Kevin Dwyer, who expanded on Sean’s ideas and gave a really nice explanation.</p>
 
 <p>As both of those posts provide excellent explanation, I won’t repeat it here. However, I have taken the liberty of creating a small class based on Sean’s and Kevin’s work for my own personal use to streamline the process the bit (and generate the figure with the concave approximation above!) You can <a href="https://gist.github.com/bp0017/bf7e548a04f133d53ebac41f3e2b8ad7">find it on my GitHub</a> if you want to play around with it a bit.</p>
-
-  </div>
-
-  <div class="date">
-    Written on June 28, 2019
-  </div>
-
-  
-</article>
-
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          
-<a href="mailto:pierce@case.edu"><i class="svg-icon email"></i></a>
-
-
-<a href="https://github.com/bgpierc"><i class="svg-icon github"></i></a>
-
-<a href="https://www.linkedin.com/in/ben-pierce-564802143"><i class="svg-icon linkedin"></i></a>
-
-<a href="/feed.xml"><i class="svg-icon rss"></i></a>
-<a href="https://www.twitter.com/bgpierce12"><i class="svg-icon twitter"></i></a>
-
-
-
-        </footer>
-      </div>
-    </div>
-
-    
-
-  </body>
-</html>
+:ET
